@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="{% static "js/script.js" %}" defer></script>
 <style>
 body {
   margin: 0 auto;
@@ -77,7 +79,6 @@ setInterval(function(){
         type: 'GET',
         url : "/getMessages/{{room}}/",
         success: function(response){
-
             $("#display").empty();
             for (var key in response.messages)
             {
@@ -97,7 +98,11 @@ setInterval(function(){
                       dataFormatada + " " + hoursString + 
                       "</span></div>";
                 $("#display").append(temp);
-
+                localStorage.getItem('mensagemLength');
+                if (localStorage.getItem('mensagemLength') != response.messages.length) {
+                  NotificationPushAll();
+                }
+                localStorage.setItem('mensagemLength',JSON.stringify(response.messages.length));
             }
         },
         error: function(response){
@@ -152,6 +157,7 @@ setInterval(function(){
         <input type="text" placeholder="Sua mensagem" name="message" id="message" width="100px" />
         <input type="submit" value="Send">
     </form>
+    <button>Click</button>
 </div>
 
 </body>
