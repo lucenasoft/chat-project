@@ -53,6 +53,7 @@ body {
 }
 </style>
 <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
 </head>
 <body>
 
@@ -60,16 +61,14 @@ body {
 
 <div id="display">
 
-<div class="container darker">
+<!-- <div class="container darker">
   <b>Tom</b><p>Hello Everyone, How Are You Guys Doing?</p>
   <span class="time-left">20th, April 2021</span>
-</div>
+</div> -->
 
 </div>
 
 <script>
-
-var data = document.querySelectorAll('.time-left');
 
 $(document).ready(function(){
 
@@ -78,18 +77,26 @@ setInterval(function(){
         type: 'GET',
         url : "/getMessages/{{room}}/",
         success: function(response){
-            console.log(response);
+
             $("#display").empty();
             for (var key in response.messages)
             {
+                var data = response.messages[key].date.substr(0, 9);
+                var data_f = moment(data, "YYYY-MM-DD");
+                var dataFormatada = data_f.format("DD/MM/YYYY");
+                var hours = response.messages[key].date.substr(11);
+                var hoursInt = parseInt(hours.substr(0,2)) - 3;
+                var hoursFormatada = hours.substr(0,5);
+
                 var temp="<div class='container darker'><b>"+
                   "Paciente: "+
                   response.messages[key].paciente_name+
                   "</b><p>"+response.messages[key].value+
                     "</p><span class='time-left'>"+
-                      response.messages[key].date+
+                      dataFormatada + " " + hoursFormatada + 
                       "</span></div>";
                 $("#display").append(temp);
+
             }
         },
         error: function(response){
@@ -99,6 +106,7 @@ setInterval(function(){
 },1000);
 })
 </script>
+
 
 
 <div class="container">

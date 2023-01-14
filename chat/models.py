@@ -19,3 +19,6 @@ class Message(models.Model):
 
     def __str__(self) -> str:
         return self.paciente_name
+
+    def get_data_evento(self):
+        return self.date.strftime('%d/%m/%y %H:%M Hrs')

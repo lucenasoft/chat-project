@@ -96,7 +96,10 @@ body {
     <form id="post-form" method="POST" action="checkview">
         {% csrf_token %}
         <label>Setor</label>
-        <input type="text" name="room_name" id="room_name" width="100px" />
+        <select name="room_name" id="room_name">
+          <option value="Laboratorio">Laboratorio</option>
+          <option value="Setor2">Setor2</option>
+        </select>
         <label>Usuário</label>
         <input type="text" name="username" id="username" width="100px" />
         <input type="submit" value="Acessar">
