@@ -86,14 +86,15 @@ setInterval(function(){
                 var dataFormatada = data_f.format("DD/MM/YYYY");
                 var hours = response.messages[key].date.substr(11);
                 var hoursInt = parseInt(hours.substr(0,2)) - 3;
-                var hoursFormatada = hours.substr(0,5);
+                var hoursFormatada = hours.substr(2,3);
+                var hoursString = hoursInt + hoursFormatada
 
                 var temp="<div class='container darker'><b>"+
                   "Paciente: "+
                   response.messages[key].paciente_name+
                   "</b><p>"+response.messages[key].value+
                     "</p><span class='time-left'>"+
-                      dataFormatada + " " + hoursFormatada + 
+                      dataFormatada + " " + hoursString + 
                       "</span></div>";
                 $("#display").append(temp);
 
