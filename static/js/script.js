@@ -5,7 +5,7 @@ button.addEventListener("click", () => {
         if (perm === "granted") {
             new Notification("Aviso!", {
                 body: "Novas mensagens!",
-                icon: "https://cdn-icons-png.flaticon.com/512/685/685836.png    "
+                icon: "https://cdn-icons-png.flaticon.com/512/685/685836.png"
             })
         }
     })
