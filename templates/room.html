@@ -100,7 +100,7 @@ setInterval(function(){
                 $("#display").append(temp);
                 localStorage.getItem('mensagemLength');
                 if (localStorage.getItem('mensagemLength') != response.messages.length) {
-                  NotificationPushAll(mensagem);
+                  NotificationPushAll();
                 }
                 localStorage.setItem('mensagemLength',JSON.stringify(response.messages.length));
             }
