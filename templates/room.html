@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br" dir="ltr" data-lt-installed="true">
+<html lang="pt-br">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="{% static "js/script.js" %}" defer></script>
@@ -84,9 +84,9 @@ setInterval(function(){
                 var temp="<div class='container darker'><b>"+
                   "Paciente: "+
                   response.messages[key].paciente_name +
-                  "</b><br><a href="+response.messages[key].arquivoPDF+">Exame do Paciente</a><p>"+response.messages[key].value+
+                  "</b><br><a target='_blank' href=http://127.0.0.1:8887/"+response.messages[key].arquivoPDF+".pdf"+">Exame do Paciente</a><p>"+response.messages[key].value+
                     "</p><span class='time-left'>"+
-                      dataHoraFormatada; + 
+                      dataHoraFormatada + " - " + response.messages[key].user +
                       "</span></div>";
                 $("#display").append(temp);
                 pai = document.getElementById("display").lastElementChild;
