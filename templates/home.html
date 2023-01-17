@@ -2,8 +2,14 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="http://www.hrrbc.org.br//templates/favourite/favicon.ico" type="">
 <style>
 body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(-90deg,#1b4e69,#1893cc);
   margin: 0 auto;
   max-width: 800px;
   padding: 0 20px;
@@ -42,6 +48,11 @@ body {
   margin-right:0;
 }
 
+select {
+  padding: 10px;
+  font-size: 18px;
+}
+
 .time-right {
   float: right;
   color: #aaa;
@@ -73,7 +84,7 @@ body {
 
     input[type=submit] {
     width: 100%;
-    background-color: #4CAF50;
+    background-color: #187fe7;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -83,7 +94,7 @@ body {
     }
 
     input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #44a4fc;
     }
 
     div {
@@ -96,9 +107,11 @@ body {
     <form id="post-form" method="POST" action="checkview">
         {% csrf_token %}
         <label>Setor</label>
-        <select name="room_name" id="room_name">
-          <option value="Laboratorio">Laboratorio</option>
-          <option value="Setor2">Setor2</option>
+        <select name="room_name" id="room_name" width="100px">
+          <option value="Clínico Médico">Clínico Médico</option>
+          <option value="Ortopedista">Ortopedista</option>
+          <option value="Cirurgião">Cirurgião</option>
+          <option value="Pediátra">Pediátra</option>
         </select>
         <label>Usuário</label>
         <input type="text" name="username" id="username" width="100px" />
