@@ -89,15 +89,10 @@ setInterval(function(){
                       dataHoraFormatada; + 
                       "</span></div>";
                 $("#display").append(temp);
-
-                pai = document.getElementById("display");
-                ultimoFilho = pai.lastElementChild;
-                aviso = ultimoFilho.firstChild.textContent;
-                mensagem = 'tste'
-
+                pai = document.getElementById("display").lastElementChild;
                 localStorage.getItem('mensagemLength');
                 if (localStorage.getItem('mensagemLength') != response.messages.length) {
-                  NotificationPushAll(aviso,mensagem);
+                  NotificationPushAll();
                 }
                 localStorage.setItem('mensagemLength',JSON.stringify(response.messages.length));
             }

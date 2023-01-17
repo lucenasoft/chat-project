@@ -16,15 +16,16 @@ function convertTZ(date, tzString) {
 //    })
 //})
 
-function NotificationPushAll(aviso, mensagem) {
-    pai = document.getElementById("display");
-    ultimoFilho = pai.lastElementChild;
-    aviso = ultimoFilho.firstChild.textContent;
+function NotificationPushAll() {
     Notification.requestPermission().then(perm => {
+        aviso = pai.firstChild.textContent;
+        mensagem = pai.children[3].textContent;
+        data = pai.children[4].textContent;
+        body = pai.children[3].textContent + "\n" + pai.children[4].textContent;
         if (perm === "granted") {
             new Notification(aviso, {
-                body: "teste",
-                icon: "https://cdn-icons-png.flaticon.com/512/685/685836.png"
+                body: body,
+                icon: "https://cdn-icons-png.flaticon.com/512/685/685836.png",
             })
         }
     })
