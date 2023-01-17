@@ -16,6 +16,7 @@ class Message(models.Model):
     user = models.CharField(max_length=1000000) #USUARIO SETADO NA PRIMEIRA PAGINA #FUNCIONARIO.
     room = models.CharField(max_length=1000000)
     paciente_name = models.CharField(max_length=1000000)
+    arquivoPDF = models.CharField(max_length=10000)
 
     def __str__(self) -> str:
         return self.paciente_name

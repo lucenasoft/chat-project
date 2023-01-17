@@ -58,20 +58,13 @@ body {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
 </head>
 <body>
-
+  
 <h2>{{room}} - Chat</h2>
 
 <div id="display">
-
-<!-- <div class="container darker">
-  <b>Tom</b><p>Hello Everyone, How Are You Guys Doing?</p>
-  <span class="time-left">20th, April 2021</span>
-</div> -->
-
 </div>
 
 <script>
-
 $(document).ready(function(){
 
 setInterval(function(){
@@ -93,7 +86,7 @@ setInterval(function(){
                 var temp="<div class='container darker'><b>"+
                   "Paciente: "+
                   response.messages[key].paciente_name+
-                  "</b><p>"+response.messages[key].value+
+                  "</b><br><a href="+response.messages[key].arquivoPDF+">Exame do Paciente</a><p>"+response.messages[key].value+
                     "</p><span class='time-left'>"+
                       dataFormatada + " " + hoursString + 
                       "</span></div>";
@@ -112,8 +105,6 @@ setInterval(function(){
 },1000);
 })
 </script>
-
-
 
 <div class="container">
     <style>
@@ -154,10 +145,10 @@ setInterval(function(){
         <input type="hidden" name="username" id="username" value="{{username}}"/>
         <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
         <input type="text" placeholder="Nome do paciente" name="paciente_name" id="paciente_name" width="100px" />
+        <input type="text" placeholder="Exame" name="arquivoPDF" id="arquivoPDF" width="100px" />
         <input type="text" placeholder="Sua mensagem" name="message" id="message" width="100px" />
         <input type="submit" value="Send">
     </form>
-    <button>Click</button>
 </div>
 
 </body>
@@ -172,6 +163,7 @@ setInterval(function(){
       data:{
           username:$('#username').val(),
           paciente_name:$('#paciente_name').val(),
+          arquivoPDF:$('#arquivoPDF').val(),
           room_id:$('#room_id').val(),
           message:$('#message').val(),
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),

@@ -32,9 +32,10 @@ def send(request):
     message = request.POST['message']
     username = request.POST['username']
     paciente_name = request.POST['paciente_name']
+    arquivoPDF = request.POST['arquivoPDF']
     room_id = request.POST['room_id']
 
-    new_message = Message.objects.create(value=message, user=username, paciente_name=paciente_name, room=room_id)
+    new_message = Message.objects.create(value=message, user=username, paciente_name=paciente_name, arquivoPDF=arquivoPDF, room=room_id)
     new_message.save()
     return HttpResponse('Mensagem enviada com sucesso!')
 
