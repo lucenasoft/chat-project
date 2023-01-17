@@ -1,9 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="pt-br" dir="ltr" data-lt-installed="true">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="{% static "js/script.js" %}" defer></script>
+
 <style>
 body {
   margin: 0 auto;
@@ -75,25 +76,28 @@ setInterval(function(){
             $("#display").empty();
             for (var key in response.messages)
             {
-                var data = response.messages[key].date.substr(0, 9);
-                var data_f = moment(data, "YYYY-MM-DD");
-                var dataFormatada = data_f.format("DD/MM/YYYY");
-                var hours = response.messages[key].date.substr(11);
-                var hoursInt = parseInt(hours.substr(0,2)) - 3;
-                var hoursFormatada = hours.substr(2,3);
-                var hoursString = hoursInt + hoursFormatada
-
+                data = response.messages[key].date;
+                dataHoraFormatada = convertTZ(data, "America/Sao_Paulo");
+                dateT = dataHoraFormatada.toString();
+                dataHoraFormatada = dateT.substr(4, 21);
+                
                 var temp="<div class='container darker'><b>"+
                   "Paciente: "+
-                  response.messages[key].paciente_name+
+                  response.messages[key].paciente_name +
                   "</b><br><a href="+response.messages[key].arquivoPDF+">Exame do Paciente</a><p>"+response.messages[key].value+
                     "</p><span class='time-left'>"+
-                      dataFormatada + " " + hoursString + 
+                      dataHoraFormatada; + 
                       "</span></div>";
                 $("#display").append(temp);
+
+                pai = document.getElementById("display");
+                ultimoFilho = pai.lastElementChild;
+                aviso = ultimoFilho.firstChild.textContent;
+                mensagem = 'tste'
+
                 localStorage.getItem('mensagemLength');
                 if (localStorage.getItem('mensagemLength') != response.messages.length) {
-                  NotificationPushAll();
+                  NotificationPushAll(aviso,mensagem);
                 }
                 localStorage.setItem('mensagemLength',JSON.stringify(response.messages.length));
             }
@@ -148,6 +152,7 @@ setInterval(function(){
         <input type="text" placeholder="Exame" name="arquivoPDF" id="arquivoPDF" width="100px" />
         <input type="text" placeholder="Sua mensagem" name="message" id="message" width="100px" />
         <input type="submit" value="Send">
+     <!-- <input type="button" value="click"> --> 
     </form>
 </div>
 
